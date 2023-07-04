@@ -1,4 +1,8 @@
-<?php require_once 'db_connection.php' ; ?>
+<?php   
+    session_start();
+    require_once 'db_connection.php' ;
+?>
+
 <!DOCTYPE html>
 <html lang="Ru">
     <head>
@@ -7,7 +11,8 @@
         <link rel="stylesheet" href="css/main.css"> <!--стили для сайта-->
         <link rel="stylesheet" href="slider/swiper-bundle.min.css"/> <!--стили слайдера-->
         <script src="slider/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
-        <link rel="stylesheet" href="css/modal.css"> <!--стили для модального окна-->
+        
+        <!--<link rel="stylesheet" href="css/modal.css"> стили для модального окна-->
     </head>
     <body>
         <div class="container">
@@ -59,10 +64,11 @@
                             <div class="product-description">
                                 <?php echo $product['description']; ?>
                             </div>
-                            <div class="product-button">
-                                <a href="#" class="order-link" data-name="Карандаш чернографитный аыва"><button>Заказать</button></a>
+                            <div data-id="<?php echo $product['product_id'];?>" class="product-button" onclick="openmodal()">
+                                <button class="button" type="button">Заказать</button>
                             </div>
                         </div>
+                        
                         <?php 
                         }
                         ?>
@@ -76,47 +82,50 @@
                     <div class="swiper review-slider">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide review-card-container">
+                                <?php 
+                                $comments = mysqli_query($connection, query:"SELECT * FROM `comments`");
+                                foreach($comments as $comment){
+                                ?>
                                 <div class="review-card">
-                                    <div class="review-card-name">- Мария</div>
-                                    <div class="review-card-review">“Оставляю отзыв, потому что довольна сервисом и предоставленной услугой. Обязательно вернусь еще.”</div>
-                                    <div class="review-card-date">20.06.2023</div>
+                                    <div class="review-card-name"><?= '- ' . $comment['name']?></div>
+                                    <div class="review-card-review"><?= '“' . $comment['comment'] . '”'?></div>
+                                    <div class="review-card-date"><?= $comment['date']?></div>
                                 </div>
-                                <div class="review-card">
-                                    <div class="review-card-name">- Михаил</div>
-                                    <div class="review-card-review">“Удобно делать покупки, богатый ассортимент, быстрая доставка. Сервисом довольна.”</div>
-                                    <div class="review-card-date">20.06.2023</div>
-                                </div>
-                                <div class="review-card">
-                                    <div class="review-card-name">- Даниил</div>
-                                    <div class="review-card-review">“Рекомендую от души. Все мастера своего дела и пример того, как нужно работать в любой сфере.”</div>
-                                    <div class="review-card-date">20.06.2023</div>
-                                </div>
-                                <div class="review-card">
-                                    <div class="review-card-name">- Екатерина</div>
-                                    <div class="review-card-review">“Хочу выразить благодарность компании за проделанную работу.Вернемся к вам с другим заказом.”</div>
-                                    <div class="review-card-date">20.06.2023</div>
-                                </div>
-                                
+                                <?php 
+                                }
+                                ?>
                             </div>
-                            <div class="swiper-slide review-card-container">
-                            </div>
-                            <div class="swiper-slide review-card-container">
-                            </div>
+                            <div class="swiper-slide review-card-container"></div>
+                            <div class="swiper-slide review-card-container"></div>
                         </div>
                         <div class="swiper-pagination"></div>
                         </div>
-                        <div class="review-form">
+                        
+                        <div class="review-form">                 
                             <div class="review-form-heading">Оставьте отзыв</div>
-                            <form action="create_comment.php " method="post">
-                                <textarea name="comment" cols="30" rows="10"></textarea>
-                                <div class="review-form-bottom">
-                                    <p>Ваше имя</p>
-                                    <input type="text" name="name">
-                                    <button type="submit">Отправить</button>
-                                </div>
-                                <div class="review-form-warning">
-                                    <?php?>
-                                </div>
+                            <form action="create_comment.php" method="post">
+                                <?php 
+                                if(!isset($_SESSION['commented'])) {
+                                    echo('
+                                        <textarea name="comment" cols="30" rows="10"></textarea>
+                                        <div class="review-form-bottom">
+                                            <p>Ваше имя</p>
+                                            <input type="text" name="name">
+                                            <button type="submit">Отправить</button>
+                                        </div>
+                                    ');
+                                }   else {
+                                    echo('
+                                        <p>Спасибо за отзыв!</p>
+                                    ');
+                                }
+                                    ?>
+                                    <?php 
+                                    if (isset($_SESSION['message'])) {
+                                        echo('<div class="review-form-warning">' . $_SESSION['message'] . '</div>');
+                                    }
+                                    unset($_SESSION['message']);
+                                    ?>
                             </form>
                         </div>
                 </div>
@@ -133,33 +142,25 @@
                 <p>Телефон: 8 913 951 56 18</p>
             </footer>
         </div>
-        <div class="modal" id="open-modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Оформление заказа</h3>
-                        <a href="#" class="close">×</a>
+        <dialog class="modal" id='modal'>
+            <div class="modal-content">
+                <div class="modal-header"><p>Оформление заказа</p><div class="close-modal-btn" onclick="closemodal()">&times;</div></div>
+                <form action="create_order.php" method="post" class="modal-form" >
+                    <div class="modal-body-form-input" name="prod-name">
+                        <p>Ваше имя</p><input type="text" name="order-name"  required>
                     </div>
-                    <div class="modal-body">
-                        <form action="">
-                            <div class="modal-body-form-input">
-                                <p>Ваше имя</p>
-                                <input type="text">
-                            </div>
-                            <div class="modal-body-form-input">
-                                <p>Эл. почта</p>
-                                <input type="text">
-                            </div>
-                            <div class="modal-body-form-input">
-                                <p>Телефон</p>
-                                <input type="text">
-                            </div>
-                            <a href=""><button>Заказать</button></a>
-                        </form>
+                    <div class="modal-body-form-input">
+                        <p>Эл. почта</p><input type="text" name="order-email" required>
+                    </div> 
+                    <div class="modal-body-form-input">
+                        <p>Телефон</p><input type="text" name="order-phone" pattern="[+7]{2}[0-9]{10}" required title="+7 (___) ___-____" placeholder="+7 (___) ___-____">
                     </div>
-                </div>
+                    <input type="text" hidden name="order-product-id" class="order-product-id">
+                    <button type="submit" class="modal-submit-btn">Заказать</button>
+                    
+                </form>
             </div>
-        </div>
+        </dialog>
         <script src="jscode.js"></script> <!--файл инициализации слайдера-->
         
     </body>
