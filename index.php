@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/main.css"> <!--стили для сайта-->
         <link rel="stylesheet" href="slider/swiper-bundle.min.css"/> <!--стили слайдера-->
         <script src="slider/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
-        
+        <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
         <!--<link rel="stylesheet" href="css/modal.css"> стили для модального окна-->
     </head>
     <body>
@@ -19,7 +19,7 @@
             
             <header class="header">
                 <div class="logo header__logo">
-                    <img src="imgs/logo.svg" alt="">
+                    <img data-src="imgs/logo.svg" alt="">
                     <div class="logotext header__logo">
                     stationeries
                     </div>
@@ -36,7 +36,7 @@
                             Все что необходимо здесь
                         </div>
                         <div class="swiper-image">
-                            <img src="imgs/cup.png" alt="">
+                            <img data-src="imgs/cup.png" alt="">
                         </div>
                     </div>
                     <div class="swiper-slide">Slide 2</div>
@@ -56,7 +56,7 @@
                         ?>
                         <div class="product">
                             <div class="product-image">
-                                <img src="<?= 'imgs/' . $product['image_url'] . '.jpg';?>" alt="">
+                                <img data-src="<?= 'imgs/' . $product['image_url'] . '.jpg';?>" alt="">
                             </div>
                             <div class="product-name">
                                 <?php echo $product['name']; ?>
@@ -133,7 +133,7 @@
 
             <footer class="footer">
                 <div class="logo footer__logo">
-                    <img src="imgs/logo.svg" alt="">
+                    <img data-src="imgs/logo.svg" alt="">
                     <div class="logotext">
                     stationeries
                     </div>

@@ -14,6 +14,26 @@
   font-family: "Montserrat-Light";
   src: url("fonts/Montserrat-Light.ttf");
 }
+.thanks, .container .review-container, .container .main-container, .container .header-slider, .container .header {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.modal .modal-content .modal-header, .container .header-slider .swiper-slide .heading {
+  font-family: "Montserrat-Bold";
+}
+
+.container .footer p, .container .review-container .review-form .review-form-heading, .container .review-container .reviews .review-slider .swiper-wrapper .review-card-container .review-card, .container .review-container p, .container .main-container .main .catalog-container .product .product-button button, .container .main-container .main .catalog-container .product .product-name, .container .main-container .main p {
+  font-family: "Montserrat-Medium";
+}
+
+.thanks p, .thanks a, .modal .modal-content .modal-form .modal-submit-btn, .modal .modal-content .modal-form .modal-body-form-input input, .modal .modal-content .modal-form, .container .review-container .review-form .review-form-warning, .container .review-container .review-form .review-form-bottom button, .container .main-container .main .catalog-container .product .product-description, .container .header-slider .swiper-slide {
+  font-family: "Montserrat-Regular";
+}
+
+.container .review-container .reviews .review-slider .swiper-wrapper .review-card-container .review-card .review-card-date {
+  font-family: "Montserrat-Light";
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -29,26 +49,6 @@
 .logo img {
   width: 50px;
   height: 50px;
-}
-
-.container .review-container, .container .main-container, .container .header-slider, .container .header {
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.modal .modal-content .modal-header, .container .header-slider .swiper-slide .heading {
-  font-family: "Montserrat-Bold";
-}
-
-.container .footer p, .container .review-container .review-form .review-form-heading, .container .review-container .reviews .review-slider .swiper-wrapper .review-card-container .review-card, .container .review-container p, .container .main-container .main .catalog-container .product .product-button button, .container .main-container .main .catalog-container .product .product-name, .container .main-container .main p {
-  font-family: "Montserrat-Medium";
-}
-
-.modal .modal-content .modal-form .modal-submit-btn, .modal .modal-content .modal-form .modal-body-form-input input, .modal .modal-content .modal-form, .container .review-container .review-form .review-form-warning, .container .review-container .review-form .review-form-bottom button, .container .main-container .main .catalog-container .product .product-description, .container .header-slider .swiper-slide {
-  font-family: "Montserrat-Regular";
-}
-
-.container .review-container .reviews .review-slider .swiper-wrapper .review-card-container .review-card .review-card-date {
-  font-family: "Montserrat-Light";
 }
 
 /*
@@ -329,4 +329,27 @@ modal popup
   color: white;
   background-color: #474747;
   margin: 0 auto;
+}
+
+.thanks {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 310px;
+  height: 310px;
+  padding: 20px 20px 35px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  border-radius: 18px;
+}
+.thanks .thanks__logo {
+  display: flex;
+  justify-content: center;
+}
+.thanks p, .thanks a {
+  font-size: 22px;
+  color: black;
 }/*# sourceMappingURL=main.css.map */

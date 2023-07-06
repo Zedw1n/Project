@@ -1,3 +1,5 @@
+
+var lazyLoadInstance = new LazyLoad({});
 var swiper1 = new Swiper('.header-slider', {
     loop: true,
     navigation: {
