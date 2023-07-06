@@ -1,5 +1,5 @@
 
-var lazyLoadInstance = new LazyLoad({});
+var lazyLoadInstance = new LazyLoad();
 var swiper1 = new Swiper('.header-slider', {
     loop: true,
     navigation: {
@@ -7,6 +7,7 @@ var swiper1 = new Swiper('.header-slider', {
       prevEl: '.swiper-button-prev',
     }
 });
+
 var swiper2 = new Swiper('.review-slider', {
   loop: true,
   pagination: {

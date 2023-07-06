@@ -41,6 +41,10 @@
   box-sizing: border-box;
 }
 
+img:not([src]):not([srcset]) {
+  visibility: hidden;
+}
+
 .logo {
   font-size: 32px;
   font-family: "Montserrat-Bold";
