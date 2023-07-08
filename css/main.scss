@@ -11,10 +11,6 @@
 %MR {font-family: "Montserrat-Regular";}
 %ML {font-family: "Montserrat-Light";}
 
-@mixin width-height($width, $height) {
-  width: $width;
-  height: $height;
-}
 * {
   padding: 0;
   margin: 0;
@@ -49,7 +45,8 @@ modal popup
     position: sticky;
     top: 0;
     background-color: white;
-    @include width-height(unset, 70px);
+    width: unset;
+    height: 70px;
     @extend %dropshadow-container-spread;
 
     .header__logo {
@@ -73,7 +70,8 @@ modal popup
       
       .swiper-text {
         padding-top: 110px;
-        @include width-height(100%, unset);
+        width: 100%;
+        height: unset;
       }
 
       .heading {
@@ -90,7 +88,8 @@ modal popup
     .swiper-button-prev {
       background-color: #474747;
       color: white;
-      @include width-height(50px, 100px);
+      width: 50px;
+      height: 100px;
     }
 
     .swiper-button-next {
@@ -107,7 +106,8 @@ modal popup
 
     .main {
       margin: 0 auto;
-      @include width-height(1100px, unset);
+      width: 1100px;
+      height: unset;
 
       p {
         padding: 100px 0 50px 0;
@@ -128,7 +128,8 @@ modal popup
           justify-content: space-between;
           align-items: center;
           text-align: center;
-          @include width-height(300px, 425px);
+          width: 300px;
+          height: 425px;
           border: solid rgb(0, 0, 0, 0.6) 3px;
           border-radius: 25px;
   
@@ -137,7 +138,8 @@ modal popup
           }
 
           .product-image img {
-            @include width-height(170px, 170px);
+            width: 170px;
+            height: 170px;
           }
 
           .product-name {
@@ -154,7 +156,8 @@ modal popup
           .product-button button {
             @extend %MM;
             font-size: 16px;
-            @include width-height(180px, 60px);
+            width: 180px;
+            height: 60px;
             color: white;
             background-color: #474747;
           }
@@ -175,11 +178,13 @@ modal popup
 
     .reviews {
       margin: 0 auto;
-      @include width-height(1560px, 850px);
+      width: 1560px;
+      height: 850px;
       display: flex;
 
       .review-slider {
-        @include width-height(780px, 620px);
+        width: 780px;
+        height: 620px;
 
         .swiper-pagination {
           bottom: var(--swiper-pagination-bottom, -3px);
@@ -190,7 +195,7 @@ modal popup
 
         .swiper-wrapper {
 
-          .review-card-container {
+          .swiper-slide {
             display: grid;
             grid-template-columns: 350px 350px;
             grid-row-gap: 40px;
@@ -206,7 +211,8 @@ modal popup
               font-size: 20px;
               box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.40);
               border-radius: 25px;
-              @include width-height(340px, 250px);
+              width: 340px;
+              height: 250px;
 
               .review-card-date {
                 text-align: right;
@@ -221,7 +227,8 @@ modal popup
     .review-form {
       margin-top: 20px;
       padding: 40px 75px 85px 75px;
-      @include width-height(650px, 580px);
+      width: 650px;
+      height: 580px;
       box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.40);
       border-radius: 15px;
 
@@ -234,20 +241,23 @@ modal popup
 
       textarea {
         padding: 10px;
-        @include width-height(100%, 300px);
+        width: 100%;
+        height: 300px;
         box-shadow: inset 0 2px 4px 0px rgba(0, 0, 0, 0.40);
         font-size: 24px;
       }
 
       .review-form-bottom {
         display: flex;
-        @include width-height(unset, 40px);
+        width: unset;
+        height: 40px;
 
         p {
           margin: 0;
           padding: unset;
           padding-right: 10px;
-          @include width-height(130px, unset);
+          width: 130px;
+          height: unset;
           font-size: 20px;
           line-height: 40px;  
         }
@@ -255,7 +265,8 @@ modal popup
         input {
           padding-left: 10px;
           box-shadow: inset 0 2px 4px 0px rgba(0, 0, 0, 0.40);
-          @include width-height(200px, unset);
+          width: 200px;
+          height: unset;
           font-size: 24px;
         }
 
@@ -263,7 +274,8 @@ modal popup
           margin-left: 20px;
           color: white;
           background-color: #474747;
-          @include width-height(150px, 40px);
+          width: 150px;
+          height: 40px;
           @extend %MR;
           font-size: 24px;
         }
@@ -280,7 +292,8 @@ modal popup
   }
   /*5.footer*/
   .footer {
-    @include width-height(unset, 150px);
+    width: unset;
+    height: 150px;
     background-color: #00000023;
 
     .footer__logo {
@@ -307,7 +320,8 @@ modal popup
   padding: 25px 45px 30px 45px;
   .modal-content {
     justify-content: center;
-    @include width-height(520px,400px );
+    width: 520px;
+    height: 400px;
     .modal-header {
       display: flex;
       justify-content: center;
@@ -343,7 +357,8 @@ modal popup
         }
       }
       .modal-submit-btn {
-        @include width-height(200px,50px );
+        width: 200px;
+        height: 50px;
         @extend %MR;
         font-size: 24px;
         color: white;

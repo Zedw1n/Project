@@ -7,12 +7,11 @@
 <html lang="Ru">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Stationeries</title>
         <link rel="stylesheet" href="css/main.css"> <!--стили для сайта-->
         <link rel="stylesheet" href="modules/swiper-bundle.min.css"/> <!--стили слайдера-->
         <script src="modules/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
-        
-        <!--<link rel="stylesheet" href="css/modal.css"> стили для модального окна-->
     </head>
     <body>
         <div class="container">
@@ -80,23 +79,7 @@
                 <p>Отзывы</p>
                 <div class="reviews">
                     <div class="swiper review-slider">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide review-card-container">
-                                <?php 
-                                $comments = mysqli_query($connection, query:"SELECT * FROM `comments`");
-                                foreach($comments as $comment){
-                                ?>
-                                <div class="review-card">
-                                    <div class="review-card-name"><?= '- ' . $comment['name']?></div>
-                                    <div class="review-card-review"><?= '“' . $comment['comment'] . '”'?></div>
-                                    <div class="review-card-date"><?= $comment['date']?></div>
-                                </div>
-                                <?php 
-                                }
-                                ?>
-                            </div>
-                            <div class="swiper-slide review-card-container"></div>
-                            <div class="swiper-slide review-card-container"></div>
+                        <div class="swiper-wrapper" id="wrapper">
                         </div>
                         <div class="swiper-pagination"></div>
                         </div>
@@ -161,7 +144,68 @@
                 </form>
             </div>
         </dialog>
-        
+        <script>
+            <?php 
+                $comments = mysqli_query($connection, query:"SELECT * FROM `comments`");  
+                $names = $review = $date = array();
+                foreach($comments as $comment){
+
+                    array_push($names, $comment['name']);
+                    array_push($review, $comment['comment']);
+                    array_push($date, $comment['date']);
+                };?>
+            function get_comments(num_rows,name_inner, review_inner, date_inner){
+                let slide_count = Math.round(num_rows / 4);
+                
+                while(num_rows>0){
+                    let counter = 0;
+                    for(slide_count; slide_count>0;slide_count--){
+                        let documentFragment = document.createDocumentFragment();
+                        let slide = document.createElement('div');
+                        slide.classList.add('swiper-slide');
+                        documentFragment.appendChild(slide);
+                        
+                        for(let i = 0; i<4; i++){
+                            if(counter == num_rows){
+                                console.log('breaking');
+                                break
+                            };
+                            let slide_review_card = document.createElement('div');
+                            slide_review_card.classList.add('review-card');
+
+                            let slide_review_card_name = document.createElement('div');
+                            slide_review_card_name.classList.add('review-card-name');
+                            slide_review_card_name.innerHTML = '- ' + name_inner[counter];
+
+                            let slide_review_card_review = document.createElement('div');
+                            slide_review_card_review.classList.add('review-card-review');
+                            slide_review_card_review.innerHTML = "“" + review_inner[counter] + "”" ;
+
+                            let slide_review_card_date = document.createElement('div');
+                            slide_review_card_date.classList.add('review-card-date');
+                            slide_review_card_date.innerHTML = date_inner[counter];
+
+                            slide_review_card.append(slide_review_card_name,slide_review_card_review,slide_review_card_date);
+                            slide.appendChild(slide_review_card);
+                            documentFragment.appendChild(slide);
+                            
+                            counter++;
+                        };
+                        wrapper.appendChild(documentFragment);
+                    };
+                    num_rows--;
+                };
+            }
+            let num_rows = <?php echo($comments -> num_rows);?>;
+            const wrapper = document.getElementById("wrapper");
+            
+            get_comments(
+                num_rows,
+                <?php echo(json_encode($names, JSON_UNESCAPED_UNICODE))?>,
+                <?php echo(json_encode($review, JSON_UNESCAPED_UNICODE))?>,
+                <?php echo(json_encode($date, JSON_UNESCAPED_UNICODE))?>);
+                
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
         <script src="jscode.js"></script> <!--файл инициализации слайдера-->
     </body>

@@ -22,7 +22,7 @@
   font-family: "Montserrat-Bold";
 }
 
-.container .footer p, .container .review-container .review-form .review-form-heading, .container .review-container .reviews .review-slider .swiper-wrapper .review-card-container .review-card, .container .review-container p, .container .main-container .main .catalog-container .product .product-button button, .container .main-container .main .catalog-container .product .product-name, .container .main-container .main p {
+.container .footer p, .container .review-container .review-form .review-form-heading, .container .review-container .reviews .review-slider .swiper-wrapper .swiper-slide .review-card, .container .review-container p, .container .main-container .main .catalog-container .product .product-button button, .container .main-container .main .catalog-container .product .product-name, .container .main-container .main p {
   font-family: "Montserrat-Medium";
 }
 
@@ -30,7 +30,7 @@
   font-family: "Montserrat-Regular";
 }
 
-.container .review-container .reviews .review-slider .swiper-wrapper .review-card-container .review-card .review-card-date {
+.container .review-container .reviews .review-slider .swiper-wrapper .swiper-slide .review-card .review-card-date {
   font-family: "Montserrat-Light";
 }
 
@@ -184,13 +184,13 @@ modal popup
   bottom: var(--swiper-pagination-bottom, -3px);
   --swiper-theme-color: #474747;
 }
-.container .review-container .reviews .review-slider .swiper-wrapper .review-card-container {
+.container .review-container .reviews .review-slider .swiper-wrapper .swiper-slide {
   display: grid;
   grid-template-columns: 350px 350px;
   grid-row-gap: 40px;
   grid-column-gap: 80px;
 }
-.container .review-container .reviews .review-slider .swiper-wrapper .review-card-container .review-card {
+.container .review-container .reviews .review-slider .swiper-wrapper .swiper-slide .review-card {
   padding: 15px 25px 25px 25px;
   margin: auto auto;
   display: flex;
@@ -202,7 +202,7 @@ modal popup
   width: 340px;
   height: 250px;
 }
-.container .review-container .reviews .review-slider .swiper-wrapper .review-card-container .review-card .review-card-date {
+.container .review-container .reviews .review-slider .swiper-wrapper .swiper-slide .review-card .review-card-date {
   text-align: right;
 }
 .container .review-container .review-form {

@@ -1,6 +1,5 @@
 <?php 
 require_once('db_connection.php');
-print_r($_POST);
 $user_name = $_POST['order-name'];
 $user_email = $_POST['order-email'];
 $user_phone = $_POST['order-phone'];
@@ -10,11 +9,9 @@ $product = mysqli_fetch_assoc(mysqli_query($connection, query:"SELECT `name` FRO
 $message = 'Здравствуйте '. $user_name .', cпасибо что заказли "' . $product['name'] . '", мы с вами свяжемся по вашему номеру телефона (' . $user_phone . ')';
 header('Location: /thanks.php');
 
-/*
 mail(
     $user_email,
     'Заказ товара',
     $message,
 )
 ?>
-*/
