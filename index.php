@@ -32,14 +32,34 @@
                             <div class="heading">
                             Канцтовары для дома и офиса
                             </div>
-                            Все что необходимо здесь
+                            Все что необходимо здесь!
                         </div>
                         <div class="swiper-image">
                             <img class="lazy" data-src="imgs/cup.png" alt="">
                         </div>
                     </div>
-                    <div class="swiper-slide">Slide 2</div>
-                    <div class="swiper-slide">Slide 3</div>
+                    <div class="swiper-slide">
+                    <div class="swiper-text">
+                            <div class="heading">
+                            Надежное качество товаров
+                            </div>
+                            Проверено временем!
+                        </div>
+                        <div class="swiper-image">
+                            <img class="lazy" data-src="imgs/cup.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                    <div class="swiper-text">
+                            <div class="heading">
+                            Хорошая оценка покупателей
+                            </div>
+                            Не поддельные!
+                        </div>
+                        <div class="swiper-image">
+                            <img class="lazy" data-src="imgs/cup.png" alt="">
+                        </div>
+                    </div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -83,14 +103,13 @@
                         </div>
                         <div class="swiper-pagination"></div>
                         </div>
-                        
                         <div class="review-form">                 
                             <div class="review-form-heading">Оставьте отзыв</div>
                             <form action="create_comment.php" method="post">
                                 <?php 
                                 if(!isset($_SESSION['commented'])) {
                                     echo('
-                                        <textarea name="comment" cols="30" rows="10"></textarea>
+                                        <textarea name="comment" ></textarea>
                                         <div class="review-form-bottom">
                                             <p>Ваше имя</p>
                                             <input type="text" name="name">
@@ -145,6 +164,7 @@
             </div>
         </dialog>
         <script>
+        
             <?php 
                 $comments = mysqli_query($connection, query:"SELECT * FROM `comments`");  
                 $names = $review = $date = array();
@@ -154,9 +174,9 @@
                     array_push($review, $comment['comment']);
                     array_push($date, $comment['date']);
                 };?>
-            function get_comments(num_rows,name_inner, review_inner, date_inner){
-                let slide_count = Math.round(num_rows / 4);
+            function get_comments(num_rows,name_inner, review_inner, date_inner,slide_count,cycles){
                 
+                wrapper.innerHTML = '';
                 while(num_rows>0){
                     let counter = 0;
                     for(slide_count; slide_count>0;slide_count--){
@@ -165,9 +185,9 @@
                         slide.classList.add('swiper-slide');
                         documentFragment.appendChild(slide);
                         
-                        for(let i = 0; i<4; i++){
+                        for(let i = 0; i<cycles; i++){
                             if(counter == num_rows){
-                                console.log('breaking');
+                                console.log('done');
                                 break
                             };
                             let slide_review_card = document.createElement('div');
@@ -192,19 +212,43 @@
                             counter++;
                         };
                         wrapper.appendChild(documentFragment);
+                        
                     };
                     num_rows--;
                 };
             }
+
+            function media(mediaQuery){
+                if (mediaQuery.matches) {
+                    console.log('rebuilding...');
+                    let slide_count = num_rows;
+                    let cycles = 1;
+                    get_comments(
+                    num_rows,
+                    <?php echo(json_encode($names, JSON_UNESCAPED_UNICODE))?>,
+                    <?php echo(json_encode($review, JSON_UNESCAPED_UNICODE))?>,
+                    <?php echo(json_encode($date, JSON_UNESCAPED_UNICODE))?>,
+                    slide_count,
+                    cycles);
+                } else {
+                    let slide_count = Math.round(num_rows / 4);
+                    let cycles = 4;
+                    get_comments(
+                    num_rows,
+                    <?php echo(json_encode($names, JSON_UNESCAPED_UNICODE))?>,
+                    <?php echo(json_encode($review, JSON_UNESCAPED_UNICODE))?>,
+                    <?php echo(json_encode($date, JSON_UNESCAPED_UNICODE))?>,
+                    slide_count,
+                    cycles);
+                }
+            }
+
             let num_rows = <?php echo($comments -> num_rows);?>;
             const wrapper = document.getElementById("wrapper");
-            
-            get_comments(
-                num_rows,
-                <?php echo(json_encode($names, JSON_UNESCAPED_UNICODE))?>,
-                <?php echo(json_encode($review, JSON_UNESCAPED_UNICODE))?>,
-                <?php echo(json_encode($date, JSON_UNESCAPED_UNICODE))?>);
-                
+            const mediaQuery = window.matchMedia('(max-width:800px)');
+            mediaQuery.addListener(media);
+            media(mediaQuery);
+
         </script>
         <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
         <script src="jscode.js"></script> <!--файл инициализации слайдера-->

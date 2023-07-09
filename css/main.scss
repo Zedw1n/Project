@@ -107,6 +107,7 @@ modal popup
     .main {
       margin: 0 auto;
       width: 1100px;
+      
       height: unset;
 
       p {
@@ -179,22 +180,22 @@ modal popup
     .reviews {
       margin: 0 auto;
       width: 1560px;
-      height: 850px;
+      
       display: flex;
-
+      padding-bottom: 100px;
       .review-slider {
         width: 780px;
-        height: 620px;
+        height: 690px;
 
-        .swiper-pagination {
+        .swiper-pagination {  
           bottom: var(--swiper-pagination-bottom, -3px);
           --swiper-theme-color: #474747;
+          .swiper-pagination-bullet{width: 20px;height: 20px;}
         }
 
-        margin-left:unset;
 
         .swiper-wrapper {
-
+          height: 620px;
           .swiper-slide {
             display: grid;
             grid-template-columns: 350px 350px;
@@ -275,7 +276,7 @@ modal popup
           color: white;
           background-color: #474747;
           width: 150px;
-          height: 40px;
+          height: 50px;
           @extend %MR;
           font-size: 24px;
         }
@@ -391,5 +392,112 @@ modal popup
     @extend %MR;
     font-size: 22px;
     color: black;
+  }
+}
+@media(max-width: 1600px) {
+  .container {
+    .review-container .reviews{
+      .review-slider {width: 780px; margin: 0 auto;}
+      display: block;
+      width: 800px;
+      .review-form{
+        width: 310px;
+        height: 380px;
+        padding: 15px 35px;
+        margin: 50px auto 0 auto;
+        textarea {
+          height: 100px;
+        }
+        .review-form-heading{
+          margin-bottom: 10px;
+          font-size: 24px;
+        }
+        .review-form-bottom {
+          height: unset;
+          display: block;
+          text-align: center;
+          p{width: unset; padding: unset;line-height: unset;}
+          input{width: 100%;margin: 10px 0 20px 0;height: 40px;}
+          button{margin: unset;}
+        }
+        .review-form-warning {
+          margin-top: 10px;
+          font-size: 20px;
+        }
+      }
+    }
+    
+  }
+}
+
+@media(max-width:1200px) {
+  .container {
+    
+    .main-container .main {
+      width: 800px;
+      .catalog-container{
+        width: 700px;
+        margin: 0 auto;
+
+        .product {
+          &:nth-child(2n) {
+            margin-right: 0;
+          }
+          &:nth-child(3n) {
+            margin-right: 100px;
+          }
+        }
+      }
+    }
+  }
+}
+@media(max-width:800px){
+  .container {
+      
+
+    .main-container .main {
+      width: 320px;
+      .catalog-container{
+      width: 300px;
+      margin: 0  auto;
+      .product{
+        margin-right: 0;
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+      }
+    }
+    .review-container .reviews{
+      width: 100vw;
+      .review-slider {
+        width: 100vw;
+        height: 400px;
+          .swiper-wrapper{
+            height: 350px;
+            .swiper-slide{
+              display: flex ;
+              .review-card{
+                width: 310px;
+              }
+            }
+          }
+      }
+    }
+  } 
+}
+@media(max-width: 600px) {
+  .header-slider .swiper-slide {
+    .swiper-image {
+      position: absolute;
+      top: 100%;
+    }
+    .swiper-text {
+      padding: 0 20px;
+      font-size: 32px;
+      .heading {
+        font-size: 38px;
+      }
+    }
   }
 }

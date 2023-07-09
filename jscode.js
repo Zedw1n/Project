@@ -1,5 +1,14 @@
 
 var lazyLoadInstance = new LazyLoad();
+
+var swiper2 = new Swiper('.review-slider', {
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+});
+
 var swiper1 = new Swiper('.header-slider', {
     loop: true,
     navigation: {
@@ -8,12 +17,7 @@ var swiper1 = new Swiper('.header-slider', {
     }
 });
 
-var swiper2 = new Swiper('.review-slider', {
-  loop: true,
-  pagination: {
-    el: '.swiper-pagination',
-  },
-});
+
 
 function openmodal() {
   modal.showModal();
