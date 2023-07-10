@@ -174,12 +174,14 @@
                     array_push($review, $comment['comment']);
                     array_push($date, $comment['date']);
                 };?>
+
             function get_comments(num_rows,name_inner, review_inner, date_inner,slide_count,cycles){
                 
                 wrapper.innerHTML = '';
                 while(num_rows>0){
                     let counter = 0;
-                    for(slide_count; slide_count>0;slide_count--){
+                    for(slide_count+1; slide_count>0;slide_count--){
+
                         let documentFragment = document.createDocumentFragment();
                         let slide = document.createElement('div');
                         slide.classList.add('swiper-slide');
@@ -187,7 +189,6 @@
                         
                         for(let i = 0; i<cycles; i++){
                             if(counter == num_rows){
-                                console.log('reviews are done!');
                                 break
                             };
                             
@@ -222,7 +223,7 @@
             function media(mediaQuery){
                 if (mediaQuery.matches) {
                     console.log('rebuilding...');
-                    let slide_count = num_rows;
+                    let slide_count = num_rows
                     let cycles = 1;
                     get_comments(
                     num_rows,
@@ -232,19 +233,33 @@
                     slide_count,
                     cycles);
                 } else {
-                    let slide_count = Math.round(num_rows / 4)+1;
-                    let cycles = 4;
-                    get_comments(
-                    num_rows,
-                    <?php echo(json_encode($names, JSON_UNESCAPED_UNICODE))?>,
-                    <?php echo(json_encode($review, JSON_UNESCAPED_UNICODE))?>,
-                    <?php echo(json_encode($date, JSON_UNESCAPED_UNICODE))?>,
-                    slide_count,
-                    cycles);
+                    console.log('rebuilding...');
+                    if(num_rows % 4 == 1){
+                        let slide_count = Math.round(num_rows / 4)+1;
+                        let cycles = 4;
+                        get_comments(
+                        num_rows,
+                        <?php echo(json_encode($names, JSON_UNESCAPED_UNICODE))?>,
+                        <?php echo(json_encode($review, JSON_UNESCAPED_UNICODE))?>,
+                        <?php echo(json_encode($date, JSON_UNESCAPED_UNICODE))?>,
+                        slide_count,
+                        cycles);
+                    } else{
+                        let slide_count = Math.round(num_rows / 4);
+                        let cycles = 4;
+                        get_comments(
+                        num_rows,
+                        <?php echo(json_encode($names, JSON_UNESCAPED_UNICODE))?>,
+                        <?php echo(json_encode($review, JSON_UNESCAPED_UNICODE))?>,
+                        <?php echo(json_encode($date, JSON_UNESCAPED_UNICODE))?>,
+                        slide_count,
+                        cycles);
+                    }
+                    
                 }
             }
-
-            let num_rows = <?php echo($comments -> num_rows);?>;
+            let num_rows = 5;
+            //let num_rows = <?php echo($comments -> num_rows);?>;
             const wrapper = document.getElementById("wrapper");
             const mediaQuery = window.matchMedia('(max-width:800px)');
             mediaQuery.addListener(media);

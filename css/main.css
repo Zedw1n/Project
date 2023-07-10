@@ -78,6 +78,7 @@ modal popup
   background-color: white;
   width: unset;
   height: 70px;
+  z-index: 2;
 }
 .container .header .header__logo {
   display: flex;

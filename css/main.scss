@@ -49,7 +49,7 @@ modal popup
     width: unset;
     height: 70px;
     @extend %dropshadow-container-spread;
-
+    z-index: 2;
     .header__logo {
       display: flex;
       justify-content: center;
@@ -193,7 +193,6 @@ modal popup
           --swiper-theme-color: #474747;
           .swiper-pagination-bullet{width: 20px;height: 20px;}
         }
-
 
         .swiper-wrapper {
           height: 620px;
