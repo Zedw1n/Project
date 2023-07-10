@@ -74,6 +74,7 @@ modal popup
   padding-top: 10px;
   position: sticky;
   top: 0;
+  left: 0;
   background-color: white;
   width: unset;
   height: 70px;

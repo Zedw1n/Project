@@ -9,8 +9,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Stationeries</title>
-        <link rel="stylesheet" href="css/main.css"> <!--стили для сайта-->
         <link rel="stylesheet" href="modules/swiper-bundle.min.css"/> <!--стили слайдера-->
+        <link rel="stylesheet" href="css/main.css"> <!--стили для сайта-->
         <script src="modules/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
     </head>
     <body>
@@ -187,9 +187,10 @@
                         
                         for(let i = 0; i<cycles; i++){
                             if(counter == num_rows){
-                                console.log('done');
+                                console.log('reviews are done!');
                                 break
                             };
+                            
                             let slide_review_card = document.createElement('div');
                             slide_review_card.classList.add('review-card');
 
@@ -231,7 +232,7 @@
                     slide_count,
                     cycles);
                 } else {
-                    let slide_count = Math.round(num_rows / 4);
+                    let slide_count = Math.round(num_rows / 4)+1;
                     let cycles = 4;
                     get_comments(
                     num_rows,
