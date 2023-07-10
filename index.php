@@ -1,6 +1,10 @@
-<?php   
+<?php  
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL); 
     session_start();
     require_once 'db_connection.php' ;
+    
 ?>
 
 <!DOCTYPE html>
@@ -258,8 +262,7 @@
                     
                 }
             }
-            let num_rows = 5;
-            //let num_rows = <?php echo($comments -> num_rows);?>;
+            let num_rows = <?php echo($comments -> num_rows);?>;
             const wrapper = document.getElementById("wrapper");
             const mediaQuery = window.matchMedia('(max-width:800px)');
             mediaQuery.addListener(media);
