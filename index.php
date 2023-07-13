@@ -77,7 +77,7 @@
                         <div class="product">
                             <div class="product-image"><img class="lazy" data-src="<?= 'imgs/' . $product['image_url'];?>" alt=""></div>
                             <div class="product-name"><?= $product['name']; ?></div>
-                            <div class="product-description"><?= $product['description']; ?></div>
+                            <div class="product-description"><?= mb_strtoupper($product['description']); ?></div>
                             <div data-id="<?= $product['product_id'];?>" class="product-button" onclick="openmodal()"><button class="button" type="button">Заказать</button></div>
                         </div>
                         <?php } ?>
