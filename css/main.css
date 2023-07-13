@@ -1,37 +1,45 @@
 @font-face {
-  font-family: "Montserrat-Bold";
-  src: url("fonts/Montserrat-Bold.ttf");
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-Bold.woff");
+  font-weight: 600;
 }
 @font-face {
-  font-family: "Montserrat-Medium";
-  src: url("fonts/Montserrat-Medium.ttf");
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-Medium.woff");
+  font-weight: 500;
 }
 @font-face {
-  font-family: "Montserrat-Regular";
-  src: url("fonts/Montserrat-Regular.ttf");
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-Regular.woff");
+  font-weight: 400;
 }
 @font-face {
-  font-family: "Montserrat-Light";
-  src: url("fonts/Montserrat-Light.ttf");
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-Light.woff");
+  font-weight: 300;
 }
 .thanks, .container .review-container, .container .main-container, .container .header-slider, .container .header {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.modal .modal-content .modal-header, .container .header-slider .swiper-slide .heading {
-  font-family: "Montserrat-Bold";
+.modal .modal-content .modal-header, .container .header-slider .swiper-slide .heading, .logo {
+  font-family: "Montserrat";
+  font-weight: 600;
 }
 
 .modal .modal-content .modal-form, .container .footer p, .container .review-container .review-form .review-form-heading, .container .review-container .reviews .review-slider .swiper-wrapper .swiper-slide .review-card, .container .review-container p, .container .main-container .main .catalog-container .product .product-button button, .container .main-container .main .catalog-container .product .product-name, .container .main-container .main p {
-  font-family: "Montserrat-Medium";
+  font-family: "Montserrat";
+  font-weight: 500;
 }
 
 .thanks p, .thanks a, .modal .modal-content .modal-form .modal-submit-btn, .modal .modal-content .modal-form .modal-body-form-input input, .container .review-container .review-form .review-form-warning, .container .review-container .review-form .review-form-bottom button, .container .main-container .main .catalog-container .product .product-description, .container .header-slider .swiper-slide {
-  font-family: "Montserrat-Regular";
+  font-family: "Montserrat";
+  font-weight: 400;
 }
 
 .container .review-container .reviews .review-slider .swiper-wrapper .swiper-slide .review-card .review-card-date {
-  font-family: "Montserrat-Light";
+  font-family: "Montserrat";
+  font-weight: 300;
 }
 
 * {
@@ -66,7 +74,6 @@ modal popup
 */
 .logo {
   font-size: 32px;
-  font-family: "Montserrat-Bold";
   line-height: 50px;
 }
 .logo img {

@@ -1,15 +1,15 @@
-@font-face {font-family: "Montserrat-Bold"; src: url("fonts/Montserrat-Bold.ttf");}
-@font-face {font-family: "Montserrat-Medium"; src: url("fonts/Montserrat-Medium.ttf");}
-@font-face {font-family: "Montserrat-Regular"; src: url("fonts/Montserrat-Regular.ttf");}
-@font-face {font-family: "Montserrat-Light"; src: url("fonts/Montserrat-Light.ttf");}
+@font-face {font-family: "Montserrat"; src: url("fonts/Montserrat-Bold.woff"); font-weight: 600;}
+@font-face {font-family: "Montserrat"; src: url("fonts/Montserrat-Medium.woff"); font-weight: 500;}
+@font-face {font-family: "Montserrat"; src: url("fonts/Montserrat-Regular.woff"); font-weight: 400;}
+@font-face {font-family: "Montserrat"; src: url("fonts/Montserrat-Light.woff"); font-weight: 300;}
 
 %dropshadow-container-spread {// @extend %dropshadow-container-spread;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);}
 
-%MB {font-family: "Montserrat-Bold";}
-%MM {font-family: "Montserrat-Medium";}
-%MR {font-family: "Montserrat-Regular";}
-%ML {font-family: "Montserrat-Light";}
+%MB {font-family: "Montserrat"; font-weight: 600;}
+%MM {font-family: "Montserrat"; font-weight: 500;}
+%MR {font-family: "Montserrat"; font-weight: 400;}
+%ML {font-family: "Montserrat"; font-weight: 300;}
 
 * {
   padding: 0;
@@ -56,7 +56,7 @@ modal popup
 */
 .logo {
   font-size: 32px;
-  font-family: 'Montserrat-Bold';
+  @extend %MB;
   line-height: 50px;
   img {
     width: 50px;
