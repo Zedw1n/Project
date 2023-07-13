@@ -7,7 +7,6 @@ $product_id = $_POST['order-product-id']; $product_id = stripcslashes($product_i
 $product = mysqli_fetch_assoc(mysqli_query($connection, query:"SELECT `name` FROM `products` WHERE `product_id` = $product_id"));
 
 $message = 'Здравствуйте '. $user_name .', cпасибо что заказли "' . $product['name'] . '", мы с вами свяжемся по вашему номеру телефона (' . $user_phone . ')';
-header('Location: /thanks.php');
 
 mail(
     $user_email,

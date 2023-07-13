@@ -4,7 +4,7 @@
     error_reporting(E_ALL); 
     session_start();
     require_once 'db_connection.php' ;
-    
+    $products = mysqli_query($connection, query:"SELECT * FROM `products`");
 ?>
 
 <!DOCTYPE html>
@@ -15,11 +15,11 @@
         <title>Stationeries</title>
         <link rel="stylesheet" href="modules/swiper-bundle.min.css"/> <!--стили слайдера-->
         <link rel="stylesheet" href="css/main.css"> <!--стили для сайта-->
+        <link rel="shortcut icon" href="imgs/logo.svg" type="image/svg">
         <script src="modules/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
     </head>
     <body>
-        <div class="container">
-            
+        <div class="container">   
             <header class="header">
                 <div class="logo header__logo">
                     <img class="lazy" data-src="imgs/logo.svg" alt="">
@@ -73,29 +73,14 @@
                 <div class="main">
                     <p>Каталог</p>
                     <div class="catalog-container" id="catalog">
-                        <?php 
-                        $products = mysqli_query($connection, query:"SELECT * FROM `products`");
-                        foreach($products as $product) {
-                        ?>
+                        <?php foreach($products as $product) {?>
                         <div class="product">
-                            <div class="product-image">
-                                <img class="lazy" data-src="<?= 'imgs/' . $product['image_url'] . '.jpg';?>" alt="">
-                            </div>
-                            <div class="product-name">
-                                <?php echo $product['name']; ?>
-                            </div>
-                            <div class="product-description">
-                                <?php echo $product['description']; ?>
-                            </div>
-                            <div data-id="<?php echo $product['product_id'];?>" class="product-button" onclick="openmodal()">
-                                <button class="button" type="button">Заказать</button>
-                            </div>
+                            <div class="product-image"><img class="lazy" data-src="<?= 'imgs/' . $product['image_url'];?>" alt=""></div>
+                            <div class="product-name"><?= $product['name']; ?></div>
+                            <div class="product-description"><?= $product['description']; ?></div>
+                            <div data-id="<?= $product['product_id'];?>" class="product-button" onclick="openmodal()"><button class="button" type="button">Заказать</button></div>
                         </div>
-                        
-                        <?php 
-                        }
-                        ?>
-                        
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -103,63 +88,63 @@
                 <p>Отзывы</p>
                 <div class="reviews">
                     <div class="swiper review-slider">
-                        <div class="swiper-wrapper" id="wrapper">
-                        </div>
+                        <div class="swiper-wrapper" id="review-slider-wrapper"></div>
                         <div class="swiper-pagination"></div>
-                        </div>
-                        <div class="review-form">                 
-                            <div class="review-form-heading">Оставьте отзыв</div>
-                            <form action="create_comment.php" method="post">
+                    </div>
+                    <div class="review-form">                 
+                        <div class="review-form-heading">Оставьте отзыв</div>
+                        <form action="create_comment.php" method="post">
+                            <?php 
+                            if(!isset($_SESSION['commented'])) {
+                                echo('
+                                    <textarea name="comment" placeholder="Не более 100 символов"></textarea>
+                                    <div class="review-form-bottom">
+                                        <p>Ваше имя</p>
+                                        <input type="text" name="name">
+                                        <button type="submit">Отправить</button>
+                                    </div>
+                                ');
+                            }   else {
+                                echo('
+                                    <p>Спасибо за отзыв!</p>
+                                ');
+                            }
+                                ?>
                                 <?php 
-                                if(!isset($_SESSION['commented'])) {
-                                    echo('
-                                        <textarea name="comment" ></textarea>
-                                        <div class="review-form-bottom">
-                                            <p>Ваше имя</p>
-                                            <input type="text" name="name">
-                                            <button type="submit">Отправить</button>
-                                        </div>
-                                    ');
-                                }   else {
-                                    echo('
-                                        <p>Спасибо за отзыв!</p>
-                                    ');
+                                if (isset($_SESSION['message'])) {
+                                    echo('<div class="review-form-warning">' . $_SESSION['message'] . '</div>');
                                 }
-                                    ?>
-                                    <?php 
-                                    if (isset($_SESSION['message'])) {
-                                        echo('<div class="review-form-warning">' . $_SESSION['message'] . '</div>');
-                                    }
-                                    unset($_SESSION['message']);
-                                    ?>
-                            </form>
-                        </div>
+                                unset($_SESSION['message']);
+                                ?>
+                        </form>
+                    
+                    </div>
                 </div>
             </div>
-
             <footer class="footer">
                 <div class="logo footer__logo">
                     <img class="lazy" data-src="imgs/logo.svg" alt="">
-                    <div class="logotext">
-                    stationeries
-                    </div>
+                    <div class="logotext">stationeries</div>
                 </div>
                 <p>Copyright 2023. Stationeries</p>
                 <p>Телефон: 8 913 951 56 18</p>
             </footer>
-        </div>
+        </div> 
+    </body>
         <dialog class="modal" id='modal'>
             <div class="modal-content">
-                <div class="modal-header"><p>Оформление заказа</p><div class="close-modal-btn" onclick="closemodal()">&times;</div></div>
+                <div class="modal-header"><p>Оформление заказа</p>
+                    <div class="close-modal-btn" onclick="closemodal()">&times;</div>
+                </div>
                 <form action="create_order.php" method="post" class="modal-form" >
                     <div class="modal-body-form-input" name="prod-name">
                         <p>Ваше имя</p><input type="text" name="order-name"  required>
                     </div>
                     <div class="modal-body-form-input">
-                        <p>Эл. почта</p><input type="text" name="order-email" required>
+                        <p>Эл. почта</p><input type="email" name="order-email" required>
                     </div> 
                     <div class="modal-body-form-input">
-                        <p>Телефон</p><input type="text" name="order-phone" pattern="[+7]{2}[0-9]{10}" required title="+7 (___) ___-____" placeholder="+7 (___) ___-____">
+                        <p>Телефон</p><input type="tel" name="order-phone" pattern="[+7]{2}[0-9]{10}" required title="+7 (___) ___-____" placeholder="+7 (___) ___-____">
                     </div>
                     <input type="text" hidden name="order-product-id" class="order-product-id">
                     <button type="submit" class="modal-submit-btn">Заказать</button>
@@ -263,7 +248,7 @@
                 }
             }
             let num_rows = <?php echo($comments -> num_rows);?>;
-            const wrapper = document.getElementById("wrapper");
+            const wrapper = document.getElementById("review-slider-wrapper");
             const mediaQuery = window.matchMedia('(max-width:800px)');
             mediaQuery.addListener(media);
             media(mediaQuery);
@@ -271,6 +256,4 @@
         </script>
         <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
         <script src="jscode.js"></script> <!--файл инициализации слайдера-->
-    </body>
-    
 </html>
