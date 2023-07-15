@@ -5,3 +5,8 @@ asd
 get_comments.php
 db_startup.php
 .htaccess
+node_modules
+gulpfile.js
+package-lock.json
+package.json
+sourcemaps

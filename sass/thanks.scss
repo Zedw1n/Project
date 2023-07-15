@@ -1,0 +1,27 @@
+
+
+
+.thanks {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 310px;
+    height: 310px;
+    padding: 20px 20px 35px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    @extend %dropshadow-container-spread !optional;
+    border-radius: 18px;
+    .thanks__logo {
+      display: flex;
+      justify-content: center;
+    }
+    p, a{ 
+      @extend %MR !optional;
+      font-size: 22px;
+      color: black;
+    }
+  }

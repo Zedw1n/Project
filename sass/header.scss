@@ -1,0 +1,72 @@
+
+
+.header {
+    .logo {
+        font-size: 32px;
+        @extend %MB !optional;
+        line-height: 50px;
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    padding-top: 10px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: unset;
+    height: 70px;
+    @extend %dropshadow-container-spread !optional;
+    z-index: 2;
+    
+    .header__logo {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  /*2.header-slider*/
+  .header-slider {
+    height: 700px;
+    @extend %dropshadow-container-spread !optional;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.9) -50%, rgba(0, 0, 0, 0) 15%,rgba(0, 0, 0, 0) 85%, rgba(0, 0, 0, 0.9) 150%);
+
+    .swiper-slide {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      font-size: 44px;
+      @extend %MR !optional;
+      
+      .swiper-text {
+        padding-top: 110px;
+        width: 100%;
+        height: unset;
+      }
+
+      .heading {
+        @extend %MB !optional;
+        font-size: 58px;
+      }
+
+      .swiper-image {
+        margin-right: 15%;
+      }
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: white;
+      width: 50px;
+      height: 100px;
+    }
+
+    .swiper-button-next {
+      right: 0%;
+    }
+
+    .swiper-button-prev {
+      left: 0%;
+    }
+  }
