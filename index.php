@@ -23,9 +23,10 @@
         <title>Stationeries</title>
         <link rel="stylesheet" href="modules/swiper/swiper-bundle.min.css"/> <!--стили слайдера-->
         <link rel="stylesheet" href="css/style.min.css"> <!--стили для сайта-->
-
         <link rel="shortcut icon" href="imgs/logo.svg" type="image/svg">
         <script src="modules/swiper/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
+        <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
+        
     </head>
     <body>
         <div class="container">   
@@ -161,10 +162,6 @@
                 </form>
             </div>
         </dialog>
-        <div id="test">
-
-        </div>
         
-        <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
         <script src="jscode.js"></script> <!--файл инициализации слайдера-->
 </html>
