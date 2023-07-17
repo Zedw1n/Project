@@ -12,16 +12,20 @@ function SwiperInitialization() {
   var swiper2 = new Swiper('.review-slider', {
     loop: true,
     pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
+      el: '.swiper-pagination'
     },
   });
 }
 
-function get_comments(num_rows,name_inner, review_inner, date_inner,slide_count,cycles){
+function get_comments(num_rows,CommentPackage,slide_count,cycles){
   wrapper.innerHTML = '';
-  while(num_rows>0){
-    let counter = 0;
+  //console.log(num_rows);
+
+  //console.log(num_rows);
+  for (num_rows; num_rows>0; num_rows--) {
+
+    let counter = num_rows - 1;
+    
     for(slide_count+1; slide_count>0;slide_count--){
 
       let documentFragment = document.createDocumentFragment();
@@ -30,72 +34,78 @@ function get_comments(num_rows,name_inner, review_inner, date_inner,slide_count,
       documentFragment.appendChild(slide);
       
       for(let i = 0; i<cycles; i++){
-          if(counter == num_rows){
-            
-              break
-          };
-          let slide_review_card = document.createElement('div');
-          slide_review_card.classList.add('review-card');
+        
+        //console.log(counter);
+        if(counter == 0){break};
+        let slide_review_card = document.createElement('div');
+        slide_review_card.classList.add('review-card');
 
-          let slide_review_card_name = document.createElement('div');
-          slide_review_card_name.classList.add('review-card-name');
-          slide_review_card_name.innerHTML = '- ' + name_inner[counter];
+        let slide_review_card_name = document.createElement('div');
+        slide_review_card_name.classList.add('review-card-name');
+        slide_review_card_name.innerHTML = '- ' + CommentPackage['name'][counter];
 
-          let slide_review_card_review = document.createElement('div');
-          slide_review_card_review.classList.add('review-card-review');
-          slide_review_card_review.innerHTML = "“" + review_inner[counter] + "”" ;
+        let slide_review_card_review = document.createElement('div');
+        slide_review_card_review.classList.add('review-card-review');
+        slide_review_card_review.innerHTML = "“" + CommentPackage['comment'][counter] + "”" ;
 
-          let slide_review_card_date = document.createElement('div');
-          slide_review_card_date.classList.add('review-card-date');
-          slide_review_card_date.innerHTML = date_inner[counter];
+        let slide_review_card_date = document.createElement('div');
+        slide_review_card_date.classList.add('review-card-date');
+        slide_review_card_date.innerHTML = CommentPackage['date'][counter];
 
-          slide_review_card.append(slide_review_card_name,slide_review_card_review,slide_review_card_date);
-          slide.appendChild(slide_review_card);
-          documentFragment.appendChild(slide);
+        slide_review_card.append(slide_review_card_name,slide_review_card_review,slide_review_card_date);
+        slide.appendChild(slide_review_card);
+        documentFragment.appendChild(slide);
 
-          counter++;
-        }
-        wrapper.appendChild(documentFragment);
+        counter--;
       }
-      num_rows--;
+      wrapper.appendChild(documentFragment);
     }
+  }
+
 }
 
 async function media(mediaQuery){
   const response = await fetch("get_comments.php");
   let CommentPackage = await response.json();
-  console.log(CommentPackage);
+  CommentPackage['num_rows'] = 24;
   if (mediaQuery.matches) {
-    console.log('rebuilding...');
-    let slide_count = CommentPackage['num_rows']
+    let slide_count;
+    if (CommentPackage['num_rows'] >10 ){
+      slide_count = 10;
+    } else {
+      slide_count = CommentPackage['num_rows'];
+    }
     let cycles = 1;
     get_comments(
     CommentPackage['num_rows'],
-    CommentPackage['name'],
-    CommentPackage['comment'],
-    CommentPackage['date'],
+    CommentPackage,
     slide_count,
     cycles);
   } else {
-    console.log('rebuilding...');
     if(CommentPackage['num_rows'] % 4 == 1){
-      let slide_count = Math.round(CommentPackage['num_rows'] / 4)+1;
+      let slide_count;
+      if (CommentPackage['num_rows'] >20 ){
+        slide_count = 5;
+      } else {
+        slide_count = Math.round(CommentPackage['num_rows'] / 4)+1;//Math.round(CommentPackage['num_rows'] / 4)+1;
+      }
       let cycles = 4;
       get_comments(
       CommentPackage['num_rows'],
-      CommentPackage['name'],
-      CommentPackage['comment'],
-      CommentPackage['date'],
+      CommentPackage,
       slide_count,
       cycles);
     } else{
-      let slide_count = Math.round(CommentPackage['num_rows'] / 4);
+      let slide_count;
+      if (CommentPackage['num_rows'] >20 ){
+        slide_count = 5;
+      } else {
+        slide_count = Math.round(CommentPackage['num_rows'] / 4);//Math.round(CommentPackage['num_rows'] / 4);
+      };
       let cycles = 4;
       get_comments(
       CommentPackage['num_rows'],
-      CommentPackage['name'],
-      CommentPackage['comment'],
-      CommentPackage['date'],
+      CommentPackage,
       slide_count,
       cycles);
     }
