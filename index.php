@@ -27,14 +27,12 @@
         <link rel="preload" href="fonts/Montserrat-Medium.woff" as="font" crossorigin/>
         <link rel="preload" href="fonts/Montserrat-Regular.woff" as="font"  crossorigin/>
         <link rel="preload" href="fonts/Montserrat-Light.woff" as="font"  crossorigin/>
-        
-        
         <link rel="stylesheet" href="modules/swiper/swiper-bundle.min.css"/> <!--стили слайдера-->
         <link rel="stylesheet" href="css/style.min.css"> <!--стили для сайта-->
         <link rel="shortcut icon" href="imgs/logo.svg" type="image/svg">
         <script src="modules/swiper/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
         <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
-        
+        <script defer src="jscode.js"></script> <!--файл инициализации слайдера-->
     </head>
     <body>
         <div class="container">   
@@ -166,5 +164,5 @@
             </div>
         </dialog>
         
-        <script src="jscode.js"></script> <!--файл инициализации слайдера-->
+        
 </html>

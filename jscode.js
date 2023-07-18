@@ -33,8 +33,8 @@ function get_comments(num_rows,CommentPackage,slide_count,cycles){
       
       for(let i = 0; i<cycles; i++){
         
-        //console.log(counter);
-        if(counter == 0){break};
+        if(counter < 0){break};
+        
         let slide_review_card = document.createElement('div');
         slide_review_card.classList.add('review-card');
 
@@ -79,6 +79,7 @@ async function media(mediaQuery){
     slide_count,
     cycles);
   } else {
+    console.log(CommentPackage['num_rows']);
     if(CommentPackage['num_rows'] % 4 == 1){
       let slide_count;
       if (CommentPackage['num_rows'] >20 ){
