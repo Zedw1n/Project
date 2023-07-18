@@ -108,7 +108,7 @@
                         <div class="swiper-pagination"></div>
                     </div>
                     <div class="review-form">                 
-                        <div class="review-form-heading">Оставьте отзыв</div>
+                    <?php if(!isset($_SESSION['commented'])) { echo('<div class="review-form-heading">Оставьте отзыв</div>');} ?>
                         <form action="create_comment.php" method="POST" id="review-form" name="review-form" >
                             <?php 
                             if(!isset($_SESSION['commented'])) {

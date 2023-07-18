@@ -79,7 +79,6 @@ async function media(mediaQuery){
     slide_count,
     cycles);
   } else {
-    console.log(CommentPackage['num_rows']);
     if(CommentPackage['num_rows'] % 4 == 1){
       let slide_count;
       if (CommentPackage['num_rows'] >20 ){
