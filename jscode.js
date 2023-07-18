@@ -109,10 +109,6 @@ async function media(mediaQuery){
   }
   SwiperInitialization()
 }
-const wrapper = document.getElementById("review-slider-wrapper");
-const mediaQuery = window.matchMedia('(max-width:800px)');
-mediaQuery.addListener(media);
-media(mediaQuery);
 
 function openmodal() {
   modal.showModal();
@@ -120,6 +116,33 @@ function openmodal() {
 function closemodal() {
   modal.close();
 }
+
+function CheckReviewValidation(form){
+  let comment = form.querySelector('textarea').value;
+  let name = form.querySelector('input').value;
+  let warning = document.getElementById('review-invalid-warning')
+  if(comment && name){
+    if(comment.length < 100){
+      form.submit()
+      
+    }else {
+      warning.innerHTML = "Вы ввели " + comment.length + " символов";
+    }
+  } else {
+    warning.innerHTML = "Заполните все поля!";
+  }
+  
+}
+
+document.getElementById('review-form').addEventListener('submit',function(event){
+  event.preventDefault();
+  CheckReviewValidation(this);
+});
+
+const wrapper = document.getElementById("review-slider-wrapper");
+const mediaQuery = window.matchMedia('(max-width:800px)');
+mediaQuery.addListener(media);
+media(mediaQuery);
 
 document.querySelectorAll('.product-button').forEach(function(btn){
   btn.addEventListener('click', function(){

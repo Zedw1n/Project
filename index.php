@@ -111,11 +111,11 @@
                     </div>
                     <div class="review-form">                 
                         <div class="review-form-heading">Оставьте отзыв</div>
-                        <form action="create_comment.php" method="post">
+                        <form action="create_comment.php" method="POST" id="review-form" name="review-form" >
                             <?php 
                             if(!isset($_SESSION['commented'])) {
                                 echo('
-                                    <textarea name="comment" placeholder="Не более 100 символов"></textarea>
+                                    <textarea name="comment" placeholder="Не более 100 символов" id="textarea-review-form"></textarea>
                                     <div class="review-form-bottom">
                                         <p><label for="review-name-input"">Ваше имя</label></p>
                                         <input type="text" name="name" id="review-name-input">
@@ -128,12 +128,7 @@
                                 ');
                             }
                                 ?>
-                                <?php
-                                if (isset($_SESSION['message'])) {
-                                    echo('<div class="review-form-warning">' . $_SESSION['message'] . '</div>');
-                                }
-                                unset($_SESSION['message']);
-                                ?>
+                            <div class="review-form-warning" id="review-invalid-warning"></div>
                         </form>
                     
                     </div>
