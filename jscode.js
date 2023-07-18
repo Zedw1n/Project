@@ -19,9 +19,7 @@ function SwiperInitialization() {
 
 function get_comments(num_rows,CommentPackage,slide_count,cycles){
   wrapper.innerHTML = '';
-  //console.log(num_rows);
 
-  //console.log(num_rows);
   for (num_rows; num_rows>0; num_rows--) {
 
     let counter = num_rows - 1;
@@ -67,7 +65,6 @@ function get_comments(num_rows,CommentPackage,slide_count,cycles){
 async function media(mediaQuery){
   const response = await fetch("get_comments.php");
   let CommentPackage = await response.json();
-  CommentPackage['num_rows'] = 24;
   if (mediaQuery.matches) {
     let slide_count;
     if (CommentPackage['num_rows'] >10 ){

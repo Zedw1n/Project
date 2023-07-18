@@ -21,6 +21,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Stationeries</title>
+        <link rel="preload" href="imgs\cup.png" as="image"/>
+        <link rel="preload" href="imgs\logo.svg" as="image"/>
+        <link rel="preload" href="fonts/Montserrat-Bold.woff" as="font"  crossorigin/>
+        <link rel="preload" href="fonts/Montserrat-Medium.woff" as="font" crossorigin/>
+        <link rel="preload" href="fonts/Montserrat-Regular.woff" as="font"  crossorigin/>
+        <link rel="preload" href="fonts/Montserrat-Light.woff" as="font"  crossorigin/>
+        
+        
         <link rel="stylesheet" href="modules/swiper/swiper-bundle.min.css"/> <!--стили слайдера-->
         <link rel="stylesheet" href="css/style.min.css"> <!--стили для сайта-->
         <link rel="shortcut icon" href="imgs/logo.svg" type="image/svg">
@@ -49,7 +57,7 @@
                             Все что необходимо здесь!
                         </div>
                         <div class="swiper-image">
-                            <img class="lazy" data-src="imgs/cup.png" alt="">
+                            <img src="imgs/cup.png" alt="">
                         </div>
                     </div>
                     <div class="swiper-slide">
@@ -96,7 +104,7 @@
             </div>
             <div class="review-container">
                 <p>Отзывы</p>
-                <div class="reviews">
+                <div class="reviews"> 
                     <div class="swiper review-slider">
                         <div class="swiper-wrapper" id="review-slider-wrapper"></div>
                         <div class="swiper-pagination"></div>
@@ -109,8 +117,8 @@
                                 echo('
                                     <textarea name="comment" placeholder="Не более 100 символов"></textarea>
                                     <div class="review-form-bottom">
-                                        <p>Ваше имя</p>
-                                        <input type="text" name="name">
+                                        <p><label for="review-name-input"">Ваше имя</label></p>
+                                        <input type="text" name="name" id="review-name-input">
                                         <button type="submit">Отправить</button>
                                     </div>
                                 ');
@@ -120,7 +128,7 @@
                                 ');
                             }
                                 ?>
-                                <?php 
+                                <?php
                                 if (isset($_SESSION['message'])) {
                                     echo('<div class="review-form-warning">' . $_SESSION['message'] . '</div>');
                                 }
