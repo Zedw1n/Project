@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </header>
-            <div class="header-slider-container">
+            <figure class="header-slider-container">
                 <div class="swiper header-slider">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -55,7 +55,7 @@
                             Все что необходимо здесь!
                         </div>
                         <div class="swiper-image">
-                            <img src="imgs/cup.png" alt="">
+                            <img src="imgs/cup.png" alt="cup">
                         </div>
                     </div>
                     <div class="swiper-slide">
@@ -66,7 +66,7 @@
                             Проверено временем!
                         </div>
                         <div class="swiper-image">
-                            <img class="lazy" data-src="imgs/cup.png" alt="">
+                            <img src="imgs/cup.png" alt="cup">
                         </div>
                     </div>
                     <div class="swiper-slide">
@@ -77,15 +77,15 @@
                             Не поддельные!
                         </div>
                         <div class="swiper-image">
-                            <img class="lazy" data-src="imgs/cup.png" alt="">
+                            <img src="imgs/cup.png" alt="cup">
                         </div>
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
                 </div>
-            </div>
-            <div class="main-container">
+            </figure>
+            <section class="main-container">
                 <div class="main">
                     <p>Каталог</p>
                     <div class="catalog-container" id="catalog">
@@ -99,8 +99,8 @@
                         <?php } ?>
                     </div>
                 </div>
-            </div>
-            <div class="review-container">
+            </section>
+            <article class="review-container">
                 <p>Отзывы</p>
                 <div class="reviews"> 
                     <div class="swiper review-slider">
@@ -131,7 +131,7 @@
                     
                     </div>
                 </div>
-            </div>
+            </article>
             <footer class="footer">
                 <div class="logo footer__logo">
                     <img class="lazy" data-src="imgs/logo.svg" alt="">

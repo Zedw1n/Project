@@ -4,10 +4,13 @@ $user_name = $_POST['order-name'];
 $user_email = $_POST['order-email'];
 $user_phone = $_POST['order-phone'];
 $product_id = $_POST['order-product-id']; $product_id = mysqli_real_escape_string($connection, $product_id);
-$product = mysqli_fetch_assoc(mysqli_query($connection, query:"SELECT `name` FROM `products` WHERE `product_id` = $product_id"));
+
+$PreparedQuery = $connection -> prepare("SELECT `name` FROM `products` WHERE `product_id` = ?");
+$PreparedQuery -> bind_param('i', $product_id);
+$PreparedQuery -> execute();
+$product = mysqli_fetch_assoc($PreparedQuery);
 
 $message = 'Здравствуйте '. $user_name .', cпасибо что заказли "' . $product['name'] . '", мы с вами свяжемся по вашему номеру телефона (' . $user_phone . ')';
-
 mail(
     $user_email,
     'Заказ товара',
