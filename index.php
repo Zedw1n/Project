@@ -18,9 +18,12 @@
 <!DOCTYPE html>
 <html lang="Ru">
     <head>
+        <title>Stationeries</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Stationeries</title>
+        <meta name="keywords" content="Канцелярия, товары к школе, тетрадные принадлежности, школа">
+        <meta name="description" content="Товары канцелярии по низкой цене и быстрой доставки на дом">
+        <meta name="author" content="Stationeries Inc.">
         <link rel="preload" href="imgs\cup.png" as="image"/>
         <link rel="preload" href="imgs\logo.svg" as="image"/>
         <link rel="preload" href="fonts/Montserrat-Bold.woff" as="font"  crossorigin/>
