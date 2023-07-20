@@ -2,8 +2,8 @@
 session_start();
 require_once('db_connection.php');
 $PreparedQuery = $connection -> prepare("INSERT INTO `comments` (`comment_id`, `name`, `comment`,`date`) VALUES (NULL, ?, ?, now())");
-$name = $_POST['name']; $name = strip_tags($name);
-$comment = $_POST['comment']; $comment = strip_tags($comment);
+$name = $_POST['name']; $name = mysqli_real_escape_string($connection, $name); $name = htmlspecialchars($name);//$name = strip_tags($name);
+$comment = $_POST['comment']; $comment = mysqli_real_escape_string($connection, $comment); $comment = htmlspecialchars($comment);// $comment = strip_tags($comment);
 $PreparedQuery -> bind_param('ss', $name, $comment);
 $PreparedQuery -> execute();
 $_SESSION['commented'] = true;
