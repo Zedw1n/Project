@@ -1,28 +1,29 @@
-
-
 .footer {
-    width: unset;
-    height: 150px;
-    background-color: #00000023;
-    .logo {
-      font-size: 32px;
-      @extend %MB !optional;
-      line-height: 50px;
-      img {
-        width: 50px;
-        height: 50px;
-      }
-    }
-    .footer__logo {
-      padding-top: 35px;
-      display: flex;
-      justify-content: center;
-    }
+  width: unset;
+  height: 150px;
+  background-color: #00000023;
 
-    p {
-      @extend %MM !optional;
-      text-align: center;
-      padding-top: 10px;
-      font-size: 16px;
+  .logo {
+    line-height: 50px;
+    font-size: 32px;
+    @extend %MB !optional;
+
+    img {
+      width: 50px;
+      height: 50px;
     }
   }
+
+  .footer__logo {
+    padding-top: 35px;
+    display: flex;
+    justify-content: center;
+  }
+
+  p {
+    padding-top: 10px;
+    text-align: center;
+    @extend %MM !optional;
+    font-size: 16px;
+  }
+}
