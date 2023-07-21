@@ -32,16 +32,16 @@
         <link rel="preload" href="fonts/Montserrat-Light.woff" as="font"  crossorigin/>
         <link rel="stylesheet" href="modules/swiper/swiper-bundle.min.css"/> <!--стили слайдера-->
         <link rel="stylesheet" href="css/style.min.css"> <!--стили для сайта-->
-        <link rel="shortcut icon" href="imgs/logo.svg" type="image/svg">
+        <link rel="shortcut icon" href="imgs/logo.svg" type="image/svg">    
         <script src="modules/swiper/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
-        <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
         <script defer src="jscode.js"></script> <!--файл инициализации слайдера-->
     </head>
     <body>
         <div class="container">   
             <header class="header">
                 <div class="logo header__logo">
-                    <img class="lazy" data-src="imgs/logo.svg" alt="">
+                    <img class="lazy" data-src="imgs/logo.svg" alt="logo">
                     <div class="logotext header__logo">
                     stationeries
                     </div>
@@ -94,7 +94,7 @@
                     <div class="catalog-container" id="catalog">
                         <?php foreach($products as $product) {?>
                         <div class="product">
-                            <div class="product-image"><img class="lazy" data-src="<?= 'imgs/' . $product['image_url'];?>" alt=""></div>
+                            <div class="product-image"><img class="lazy" data-src="<?= 'imgs/' . $product['image_url'];?>" alt="<?= $product['name']; ?>"></div>
                             <div class="product-name"><?= $product['name']; ?></div>
                             <div class="product-description"><?= mb_strtoupper($product['description']); ?></div>
                             <div data-id="<?= $product['product_id'];?>" class="product-button" onclick="openmodal()"><button class="button" type="button">Заказать</button></div>
@@ -137,7 +137,7 @@
             </article>
             <footer class="footer">
                 <div class="logo footer__logo">
-                    <img class="lazy" data-src="imgs/logo.svg" alt="">
+                    <img class="lazy" data-src="imgs/logo.svg" alt="logo">
                     <div class="logotext">stationeries</div>
                 </div>
                 <p>Copyright 2023. Stationeries</p>
