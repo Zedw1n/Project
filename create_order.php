@@ -8,7 +8,8 @@ $product_id = $_POST['order-product-id']; $product_id = mysqli_real_escape_strin
 $PreparedQuery = $connection -> prepare("SELECT `name` FROM `products` WHERE `product_id` = ?");
 $PreparedQuery -> bind_param('i', $product_id);
 $PreparedQuery -> execute();
-$product = mysqli_fetch_assoc($PreparedQuery);
+$result = $PreparedQuery -> get_result();
+$product = mysqli_fetch_assoc($result);
 
 $message = 'Здравствуйте '. $user_name .', cпасибо что заказли "' . $product['name'] . '", мы с вами свяжемся по вашему номеру телефона (' . $user_phone . ')';
 mail(
