@@ -9,6 +9,30 @@
 
 
 @media(max-width: 1600px) {
+  
+*::-webkit-input-placeholder {
+  font-size: 18px;
+}
+*:-moz-placeholder {
+  /* FF 4-18 */
+  font-size: 18px;
+}
+*::-moz-placeholder {
+  /* FF 19+ */
+  font-size: 18px;
+}
+*:-ms-input-placeholder {
+  /* IE 10+ */
+  font-size: 18px;
+}
+*::-ms-input-placeholder {
+  /* Microsoft Edge */
+  font-size: 18px;
+}
+*::placeholder {
+  /* modern browser */
+  font-size: 18px;
+}
   .container {
     .review-container {
       .reviews {
