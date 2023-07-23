@@ -1,7 +1,6 @@
 phpmyadmin
 data
 test.php
-db_startup.php
 .htaccess
 node_modules
 gulpfile.js
