@@ -1,9 +1,12 @@
 <?php  
-    ini_set('display_errors', '1');
-    ini_set('display_startup_errors', '1');
-    error_reporting(E_ALL); 
     session_start();
     require_once 'db_connection.php' ;
+    require_once 'config.php' ;
+    if(!$config['production']){
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
+        error_reporting(E_ALL);
+    }
     $products = mysqli_query($connection, query:"SELECT * FROM `products`");
     $comments = mysqli_query($connection, query:"SELECT * FROM `comments`");  
     $names = $review = $date = array();
@@ -35,7 +38,7 @@
         <link rel="shortcut icon" href="imgs/logo.svg" type="image/svg">    
         <script defer src="modules/swiper/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
         <script defer src="//cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
-        <script async src="jscode.js"></script> <!--файл инициализации слайдера--> 
+        <script defer src="jscode.js"></script> <!--файл инициализации слайдера--> 
     </head>
     <body>
         <div class="container">   
