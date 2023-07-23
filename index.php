@@ -33,9 +33,9 @@
         <link rel="stylesheet" href="modules/swiper/swiper-bundle.min.css"/> <!--стили слайдера-->
         <link rel="stylesheet" href="css/style.min.css"> <!--стили для сайта-->
         <link rel="shortcut icon" href="imgs/logo.svg" type="image/svg">    
-        <script src="modules/swiper/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
-        <script src="//cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
-        <script defer src="jscode.js"></script> <!--файл инициализации слайдера-->
+        <script defer src="modules/swiper/swiper-bundle.min.js"></script> <!--скрипты для слайдера-->
+        <script defer src="//cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
+        <script async src="jscode.js"></script> <!--файл инициализации слайдера--> 
     </head>
     <body>
         <div class="container">   
