@@ -61,11 +61,10 @@ function get_comments(num_rows,CommentPackage,slide_count,cycles){
   }
 
 }
-
-async function media(mediaQuery){
+async function SliderMediaBuilder(SliderMediaQuery){
   const response = await fetch("get_comments.php");
   let CommentPackage = await response.json();
-  if (mediaQuery.matches) {
+  if (SliderMediaQuery.matches) {
     let slide_count;
     if (CommentPackage['num_rows'] >10 ){
       slide_count = 10;
@@ -140,9 +139,10 @@ document.getElementById('review-form').addEventListener('submit',function(event)
 });
 
 const wrapper = document.getElementById("review-slider-wrapper");
-const mediaQuery = window.matchMedia('(max-width:800px)');
-mediaQuery.addListener(media);
-media(mediaQuery);
+const SliderMediaQuery = window.matchMedia('(max-width:800px)');
+SliderMediaQuery.addListener(SliderMediaBuilder);
+SliderMediaBuilder(SliderMediaQuery);
+
 
 document.querySelectorAll('.product-button').forEach(function(btn){
   btn.addEventListener('click', function(){
