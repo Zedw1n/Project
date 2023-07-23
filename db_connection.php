@@ -1,4 +1,5 @@
 <?php	
-    $connection = new mysqli("localhost","root","password","project_database");
-    mysqli_set_charset($connection,"utf8");
+    require_once('config.php');
+    $connection = new mysqli($config['hostname'],$config['login'],$config['password'],$config['database']);
+    mysqli_set_charset($connection,$config['encoding']);
 ?>
