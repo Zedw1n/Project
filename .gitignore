@@ -1,7 +1,6 @@
 phpmyadmin
 data
 test.php
-.htaccess
 node_modules
 gulpfile.js
 package-lock.json
