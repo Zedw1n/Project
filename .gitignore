@@ -6,5 +6,5 @@ gulpfile.js
 package-lock.json
 package.json
 sourcemaps
-sass
-sample_config.php
+config.php
+css
