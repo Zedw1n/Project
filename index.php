@@ -27,8 +27,8 @@
         <meta name="keywords" content="Канцелярия, товары к школе, тетрадные принадлежности, школа">
         <meta name="description" content="Товары канцелярии по низкой цене и быстрой доставки на дом">
         <meta name="author" content="Stationeries Inc.">
-        <link rel="preload" href="imgs\cup.png" as="image"/>
-        <link rel="preload" href="imgs\logo.svg" as="image"/>
+        <link rel="preload" href="imgs/cup.png" as="image"/>
+        <link rel="preload" href="imgs/logo.svg" as="image"/>
         <link rel="preload" href="fonts/Montserrat-Bold.woff" as="font"  crossorigin/>
         <link rel="preload" href="fonts/Montserrat-Medium.woff" as="font" crossorigin/>
         <link rel="preload" href="fonts/Montserrat-Regular.woff" as="font"  crossorigin/>
