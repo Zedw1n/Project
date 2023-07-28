@@ -1,5 +1,5 @@
 
-var lazyLoadInstance = new LazyLoad();
+var lazy_load_instance = new LazyLoad();
 function SwiperInitialization() {
   var swiper1 = new Swiper('.header-slider', {
     loop: true,
@@ -17,7 +17,7 @@ function SwiperInitialization() {
   });
 }
 
-function get_comments(num_rows,CommentPackage,slide_count,cycles){
+function get_comments(num_rows,comment_package,slide_count,cycles){
   wrapper.innerHTML = '';
 
   for (num_rows; num_rows>0; num_rows--) {
@@ -26,10 +26,10 @@ function get_comments(num_rows,CommentPackage,slide_count,cycles){
     
     for(slide_count+1; slide_count>0;slide_count--){
 
-      let documentFragment = document.createDocumentFragment();
+      let document_fragment = document.createDocumentFragment();
       let slide = document.createElement('div');
       slide.classList.add('swiper-slide');
-      documentFragment.appendChild(slide);
+      document_fragment.appendChild(slide);
       
       for(let i = 0; i<cycles; i++){
         
@@ -40,68 +40,75 @@ function get_comments(num_rows,CommentPackage,slide_count,cycles){
 
         let slide_review_card_name = document.createElement('div');
         slide_review_card_name.classList.add('review-card-name');
-        slide_review_card_name.innerHTML = '- ' + CommentPackage['name'][counter];
+        slide_review_card_name.innerHTML = '- ' + comment_package['name'][counter];
 
         let slide_review_card_review = document.createElement('div');
         slide_review_card_review.classList.add('review-card-review');
-        slide_review_card_review.innerHTML = "“" + CommentPackage['comment'][counter] + "”" ;
+        slide_review_card_review.innerHTML = "“" + comment_package['comment'][counter] + "”" ;
 
         let slide_review_card_date = document.createElement('div');
         slide_review_card_date.classList.add('review-card-date');
-        slide_review_card_date.innerHTML = CommentPackage['date'][counter];
+        slide_review_card_date.innerHTML = comment_package['date'][counter];
 
         slide_review_card.append(slide_review_card_name,slide_review_card_review,slide_review_card_date);
         slide.appendChild(slide_review_card);
-        documentFragment.appendChild(slide);
+        document_fragment.appendChild(slide);
 
         counter--;
       }
-      wrapper.appendChild(documentFragment);
+      wrapper.appendChild(document_fragment);
     }
   }
 
 }
-async function SliderMediaBuilder(SliderMediaQuery){
+
+async function getData(){
   const response = await fetch("get_comments.php");
-  let CommentPackage = await response.json();
-  if (SliderMediaQuery.matches) {
+  let comment_package = await response.json();
+  return comment_package
+
+}
+
+async function SliderMediaBuilder(slider_media_query){
+  let comment_package = await getData();
+  if (slider_media_query.matches) {
     let slide_count;
-    if (CommentPackage['num_rows'] >10 ){
+    if (comment_package['num_rows'] >10 ){
       slide_count = 10;
     } else {
-      slide_count = CommentPackage['num_rows'];
+      slide_count = comment_package['num_rows'];
     }
     let cycles = 1;
     get_comments(
-    CommentPackage['num_rows'],
-    CommentPackage,
+    comment_package['num_rows'],
+    comment_package,
     slide_count,
     cycles);
   } else {
-    if(CommentPackage['num_rows'] % 4 == 1){
+    if(comment_package['num_rows'] % 4 == 1){
       let slide_count;
-      if (CommentPackage['num_rows'] >20 ){
+      if (comment_package['num_rows'] >20 ){
         slide_count = 5;
       } else {
-        slide_count = Math.round(CommentPackage['num_rows'] / 4)+1;//Math.round(CommentPackage['num_rows'] / 4)+1;
+        slide_count = Math.round(comment_package['num_rows'] / 4)+1;//Math.round(comment_package['num_rows'] / 4)+1;
       }
       let cycles = 4;
       get_comments(
-      CommentPackage['num_rows'],
-      CommentPackage,
+      comment_package['num_rows'],
+      comment_package,
       slide_count,
       cycles);
     } else{
       let slide_count;
-      if (CommentPackage['num_rows'] >20 ){
+      if (comment_package['num_rows'] >20 ){
         slide_count = 5;
       } else {
-        slide_count = Math.round(CommentPackage['num_rows'] / 4);//Math.round(CommentPackage['num_rows'] / 4);
+        slide_count = Math.round(comment_package['num_rows'] / 4);//Math.round(comment_package['num_rows'] / 4);
       };
       let cycles = 4;
       get_comments(
-      CommentPackage['num_rows'],
-      CommentPackage,
+      comment_package['num_rows'],
+      comment_package,
       slide_count,
       cycles);
     }
@@ -139,9 +146,9 @@ document.getElementById('review-form').addEventListener('submit',function(event)
 });
 
 const wrapper = document.getElementById("review-slider-wrapper");
-const SliderMediaQuery = window.matchMedia('(max-width:800px)');
-SliderMediaQuery.addListener(SliderMediaBuilder);
-SliderMediaBuilder(SliderMediaQuery);
+const slider_media_query = window.matchMedia('(max-width:800px)');
+slider_media_query.addListener(SliderMediaBuilder);
+SliderMediaBuilder(slider_media_query);
 
 
 document.querySelectorAll('.product-button').forEach(function(btn){
@@ -151,3 +158,4 @@ document.querySelectorAll('.product-button').forEach(function(btn){
     
   })
 })
+
