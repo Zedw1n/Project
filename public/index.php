@@ -6,6 +6,10 @@
         ini_set('display_errors', '1');
         ini_set('display_startup_errors', '1');
         error_reporting(E_ALL);
+        $db_exists = mysqli_fetch_all($connection->query("SHOW TABLES"));
+        if (count($db_exists) == 0){
+            header('Location: ../db_startup.php');
+        }
     }
     $products = mysqli_query($connection, query:"SELECT * FROM `products`");
     $comments = mysqli_query($connection, query:"SELECT * FROM `comments`");  
