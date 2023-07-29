@@ -1,5 +1,5 @@
 <?php 
-require_once('../db_connection.php');
+require_once('db_connection.php');
 $user_name = $_POST['order-name'];
 $user_email = $_POST['order-email'];
 $user_phone = $_POST['order-phone'];

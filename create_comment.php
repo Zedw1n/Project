@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once('..//db_connection.php');
+require_once('db_connection.php');
 $name = $_POST['name']; $name = mysqli_real_escape_string($connection, $name); $name = htmlspecialchars($name);
 $comment = $_POST['comment']; $comment = mysqli_real_escape_string($connection, $comment); $comment = htmlspecialchars($comment);
 

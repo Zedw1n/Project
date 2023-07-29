@@ -115,7 +115,7 @@
                     </div>
                     <div class="review-form">                 
                     <?php if(!isset($_SESSION['commented'])) { echo('<div class="review-form-heading">Оставьте отзыв</div>');} ?>
-                        <form action="create_comment.php" method="POST" id="review-form" name="review-form" >
+                        <form action="../create_comment.php" method="POST" id="review-form" name="review-form" >
                             <?php 
                             if(!isset($_SESSION['commented'])) {
                                 echo('
@@ -153,7 +153,7 @@
                 <div class="modal-header"><p>Оформление заказа</p>
                     <div class="close-modal-btn" onclick="closemodal()">&times;</div>
                 </div>
-                <form action="create_order.php" method="post" class="modal-form" >
+                <form action="../create_order.php" method="post" class="modal-form" >
                     <div class="modal-body-form-input" name="prod-name">
                         <p>Ваше имя</p><input type="text" name="order-name"  required>
                     </div>

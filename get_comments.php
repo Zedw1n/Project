@@ -1,5 +1,5 @@
 <?php 
-require_once '../db_connection.php' ;
+require_once 'db_connection.php' ;
 
 $comments = mysqli_fetch_all(mysqli_query($connection, query:"SELECT * FROM `comments`"));
 

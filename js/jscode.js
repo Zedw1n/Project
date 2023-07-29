@@ -63,7 +63,7 @@ function get_comments(num_rows,comment_package,slide_count,cycles){
 }
 
 async function getData(){
-  const response = await fetch("get_comments.php");
+  const response = await fetch("../../get_comments.php");
   let comment_package = await response.json();
   return comment_package
 
